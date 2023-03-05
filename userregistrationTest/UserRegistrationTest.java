@@ -7,24 +7,24 @@ import java.util.regex.Pattern;
 
 public class UserRegistrationTest {
     @Test
-    public void givenFirstName_WhenProper_ShouldReturn_True() {
+    public void givenPhone_WhenProper_ShouldReturn_True() {
         UserValidater userValidater = new UserValidater();
-        boolean result = userValidater.validateEmail("abc.xyz@bl.co.in");
+        boolean result = userValidater.validatePhone("91 8105215414");
         Assert.assertEquals(true,result);
     }
     @Test
-    public void givenFirstName_WhenNotProper_ShouldReturn_False() {
+    public void givenPhone_WhenNotProper_ShouldReturn_False() {
         UserValidater userValidater = new UserValidater();
-        boolean result = userValidater.validateEmail("Praveen@.com");
+        boolean result = userValidater.validatePhone("234234323422234");
         Assert.assertEquals(false,result);
     }
 }
 
 
 class UserValidater {
-    private static final String Email= "[abc]{3}.[a-z]{3}+@[bl]{2}.[co]{2}.[a-z]{2}+";
+    private static final String Email= "[91]{2}\\s[0-9]{10}+";
 
-    public boolean validateEmail(String Email) {
+    public boolean validatePhone(String Phone) {
         Pattern pattern = Pattern.compile(Email);
         return pattern.matcher(Email).matches();
     }
